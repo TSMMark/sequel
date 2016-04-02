@@ -71,7 +71,7 @@ module Sequel
       return @columns if @columns
       ds = unfiltered.unordered.naked.clone(:distinct => nil, :limit => 1, :offset=>nil)
       ds.each{break}
-      @columns = ds.instance_variable_get(:@columns)
+      self.columns = ds.instance_variable_get(:@columns)
       @columns || []
     end
         
@@ -81,7 +81,7 @@ module Sequel
     #   DB[:table].columns!
     #   # => [:id, :name]
     def columns!
-      @columns = nil
+      self.columns = nil
       columns
     end
     
